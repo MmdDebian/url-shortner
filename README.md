@@ -1,5 +1,5 @@
 # URL shotner 
 
 
-#َ About 
+# About 
 This repo can shrink big urls
