@@ -1,7 +1,7 @@
 import { Errback , Request , Response , NextFunction } from 'express';
 
 function invalidUrl(req:Request,res:Response,next:NextFunction):void{
-    res.status(404).json({
+    res.status(400).json({
         messgae : 'url is Invalid'
     })
 }

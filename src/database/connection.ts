@@ -1,8 +1,8 @@
+import config from 'config';
 import mongoose from "mongoose";
 
-
 function connect(cb:(err:Error | any , message:string)=> void):void{
-    mongoose.connect('mongodb://localhost:27017/url-shortner')
+    mongoose.connect(config.get('MONGODB_URI'))
     .then(()=>{
         cb(null , 'connect to database');
     })
