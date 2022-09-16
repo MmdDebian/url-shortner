@@ -2,13 +2,15 @@ import app from "../app";
 import connect from "../database/connection";
 import mainRouter from '../routes/index';
 import { error, invalidUrl } from "../middlewares/error";
+import config from 'config';
 
 app.use('/api' , mainRouter);
 app.all('*' , invalidUrl);
 app.use(error);
 
 
-const port = process.env.PORT || 4001 ;
+const port = config.get('PORT') || 4001 ;
+
 app.listen(port , ()=>{
     console.clear()
     console.log(process.version);
