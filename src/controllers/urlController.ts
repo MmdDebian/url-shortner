@@ -7,9 +7,15 @@ import Url from '../models/Url';
 const baseUrl = 'http://localhost:3001'
 
 
-export function shorten(req:Request,res:Response){
+export async function shorten(req:Request,res:Response){
     let { longUrl } = req.body ;
     let orginalUrl:any ;
+
+    const foundUrl = await Url.findOne({ longUrl : longUrl });
+
+    if(foundUrl){
+        return res.send({data : foundUrl.shortUrl});
+    }
     
     try{
         orginalUrl = new URL(longUrl);
@@ -24,22 +30,28 @@ export function shorten(req:Request,res:Response){
             return res.status(404).send({ message : 'Address not found !'});
         }
 
-        const shortUrl = baseUrl + `/${shortid.generate()}`;
-
+        const urlCode = shortid.generate();
+        const shortUrl = `${baseUrl}/${urlCode}`;
         const newUrl = new Url({
+            code : urlCode ,
             longUrl : longUrl ,
-            shortUrl : shortUrl ,
+            shortUrl : shortUrl
         })
 
         const result = await newUrl.save();
 
-        res.send({message : 'successfully created short Url' , data : result})
+        res.send({message : 'successfully created short Url' , data : result.shortUrl});
     });
 
 }
 
-export function getUrl(req:Request,res:Response){
-    let { utl } = req.body; 
+export async function getUrl(req:Request,res:Response){
+    let id = req.params.id ; 
+    const foundUrl = await Url.findOne({ code : id });
 
+    if(!foundUrl){
+        return res.status(404).send('url is not found');
+    }
 
+    res.redirect(foundUrl.longUrl!);
 }

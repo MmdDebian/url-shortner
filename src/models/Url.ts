@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const urlModel = new mongoose.Schema({
+    code : String , 
     longUrl : String , 
     shortUrl : String ,
     date : {
