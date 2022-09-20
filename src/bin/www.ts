@@ -1,7 +1,7 @@
 import app from "../app";
 import connect from "../database/connection";
-import config from 'config';
-const port = config.get('PORT') || 4001 ;
+
+const port = process.env.PORT || 4001 ;
 
 app.listen(port , ()=>{
     console.clear()

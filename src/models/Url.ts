@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 
 const urlModel = new mongoose.Schema({
-    urlCode : String , 
     longUrl : String , 
     shortUrl : String ,
-    data : {
+    date : {
         type : String ,
         default : Date.now()
     }
