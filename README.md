@@ -1,5 +1,20 @@
-# URL shotner 
+# Url shortner for long url 
+
+## About  
+
+If you have long url, you can use this page for shortening url.
+(continue ...)
+
+## Backend : 
+- NodeJS
+- Express
+- MongoDB
+- Dns (built-in module)
+- Other ... :/
 
 
-# About 
-This repo can shrink big urls
+## Frontend
+
+- ReactJS
+- Bootstrap 
+- Other ... 
